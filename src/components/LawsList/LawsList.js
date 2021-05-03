@@ -1,10 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import styles from './LawsList.module.css';
 
 import ListCard from '../ListCard';
 
-function LawsList({ response }) {
+const LawsList = ({ response }) => {
   if (!response) {
     return <p>Lista vazia</p>;
   }
@@ -17,13 +18,17 @@ function LawsList({ response }) {
     <ul className={styles.list}>
       {response?.items?.map((item) => (
         <li key={item.description}>
-          <a href={item.url} target="_blank">
+          <a href={item.url} target="_blank" rel="noreferrer">
             <ListCard item={item.description} />
           </a>
         </li>
       ))}
     </ul>
   );
-}
+};
+
+LawsList.propTypes = {
+  response: PropTypes.object,
+};
 
 export default LawsList;

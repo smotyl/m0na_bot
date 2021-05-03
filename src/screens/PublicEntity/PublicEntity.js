@@ -7,6 +7,7 @@ import LawsList from '../../components/LawsList';
 
 import styles from './PublicEntity.module.css';
 
+import TweeterButton from '../../components/TweeterButton';
 import logo from '../../assets/logo.png';
 
 function PublicEntity() {
@@ -40,17 +41,10 @@ function PublicEntity() {
 
       <h1 className={styles.entityName}>{public_entity.toUpperCase()}</h1>
 
-      <a
-        data-show-count="false"
-        className="twitter-share-button"
-        href="https://twitter.com/share?ref_src=twsrc%5Etfw"
-        data-text={`Atualização em projetos de lei na ${public_entity.toUpperCase()}. Mais informações:`}
-      >
-        Tweet
-      </a>
+      <TweeterButton publicEntity={public_entity} />
 
       <div className={styles.buttonContainer}>
-        <Link to="/" tabindex="-1">
+        <Link to="/" tabIndex="-1">
           <button className={styles.button}>Voltar</button>
         </Link>
         <button onClick={getPublicEntity} className={styles.button}>

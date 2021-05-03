@@ -2,7 +2,12 @@ module.exports = {
   env: {
     es6: true,
   },
-  extends: ['prettier'],
+  settings: {
+    react: {
+      version: 'detect',
+    },
+  },
+  extends: ['prettier', 'plugin:react/recommended'],
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',
@@ -19,6 +24,7 @@ module.exports = {
   plugins: ['react', 'prettier', 'react-hooks'],
   rules: {
     'prettier/prettier': 'error',
+    'react/prop-types': ['error'],
     'react/jsx-filename-extension': [
       'warn',
       {
@@ -27,7 +33,6 @@ module.exports = {
     ],
     'import/prefer-default-export': 'off',
     'no-param-reassing': 'off',
-    'no-console': ['error', { allow: ['tron'] }],
 
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',

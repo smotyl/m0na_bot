@@ -6,7 +6,7 @@ import styles from './EntitiesList.module.css';
 import ListCard from '../ListCard';
 import { publicEntities } from '../../utils/constants';
 
-function EntitiesList() {
+const EntitiesList = () => {
   return (
     <ul className={styles.list}>
       {publicEntities.map((item) => (
@@ -18,6 +18,6 @@ function EntitiesList() {
       ))}
     </ul>
   );
-}
+};
 
 export default EntitiesList;
