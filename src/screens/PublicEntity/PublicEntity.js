@@ -4,34 +4,44 @@ import { useParams } from 'react-router';
 
 import Loading from '../../components/Loading';
 import LawsList from '../../components/LawsList';
+import TweeterButton from '../../components/TweeterButton';
 
 import styles from './PublicEntity.module.css';
-
-import TweeterButton from '../../components/TweeterButton';
 import logo from '../../assets/logo.png';
+
+import ErrorScreen from '../ErrorScreen';
 
 function PublicEntity() {
   const [response, setResponse] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   const { public_entity } = useParams();
 
   const getPublicEntity = async () => {
     setLoading(true);
-    const response = await fetch(
-      `http://localhost:3001/robots/${public_entity}`,
-      {
-        method: 'GET',
-      }
-    );
-    const parsed = await response.json();
-    setResponse(parsed);
+    try {
+      const response = await fetch(
+        `http://localhost:3001/robots/${public_entity}`,
+        {
+          method: 'GET',
+        }
+      );
+      const parsed = await response.json();
+      setResponse(parsed);
+    } catch (error) {
+      setError(true);
+    }
     setLoading(false);
   };
 
   useEffect(() => {
     getPublicEntity();
   }, []);
+
+  if (error) {
+    return <ErrorScreen />;
+  }
 
   return (
     <div className={styles.container}>
